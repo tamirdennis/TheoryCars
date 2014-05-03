@@ -109,7 +109,10 @@
   <ItemGroup>
     <Compile Include="AnimatedObj.cs" />
     <Compile Include="Camera.cs" />
-    <Compile Include="Character.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="CarCollisionListener.cs" />
+    <Compile Include="carInRoadSignAreaListener.cs" />
+    <Compile Include="changeDirection.cs" />
     <Compile Include="Drawing.cs" />
     <Compile Include="GeneralTypes.cs" />
     <Compile Include="KeyBoard.cs" />
@@ -117,6 +120,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="roadSign.cs" />
     <Compile Include="Tools.cs" />
   </ItemGroup>
   <ItemGroup>

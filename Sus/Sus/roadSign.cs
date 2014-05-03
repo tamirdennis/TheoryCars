@@ -23,21 +23,26 @@ using GD = Microsoft.Xna.Framework.GraphicsDeviceManager;
 using CM = Microsoft.Xna.Framework.Content.ContentManager;
 #endregion
 
-
 namespace Sus
 {
-    enum States { Drive, Null};
-    
-    public delegate void SigUpdate();
-    public delegate void SigDraw();
-    delegate void collisionEventHandler(Car car, EventArgs e);
-    delegate void carInRoadSignAreaEventHandler(Car car, roadSign roadsign, EventArgs e);
-    interface IFocus
+    abstract class roadSign : AnimatedObj
     {
-        V2 Pos { get; }
-        F Rot { get; }
+        public static List<roadSign> roadSigns = new List<roadSign>();
+        protected Point[] area;
+        public roadSign(string name, States state, V2 pos, Rec? rec, C color,
+                                F rot, V2 org, V2 scale, SE se, F layer, Point[] area)
+        : base(name, state, pos, rec, color,
+                                rot, org, scale, se, layer)
+        {
+            this.area = area;
+            roadSigns.Add(this);
+        }
 
+        public Point[] getArea()
+        {
+            return area;
+        }
+
+        public abstract void whenCarIsInArea(Car car);
     }
 }
-
-

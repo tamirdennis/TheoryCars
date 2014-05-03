@@ -26,25 +26,21 @@ using CM = Microsoft.Xna.Framework.Content.ContentManager;
 
 namespace Sus
 {
-    class AnimatedObj:Drawing
+    class AnimatedObj : Drawing
     {
         #region Data
-        Page page;
-       protected int place=0;
+        protected Page page;
+        protected int place = 0;
         int slow = 0;
         States state;
         Dictionary<States, Page> Acts = new Dictionary<States, Page>();
         protected Boolean flip;
 
-        protected float bigR;
-        protected V2 frontPos;
-        protected V2 backPos;
-        protected V2 inFrontOfMe;
-        static event SigColl CHECKCOLL;
+        
         #endregion
 
         #region ctor
-        public AnimatedObj(string name,States state, V2 pos, Rec? rec, C color,
+        public AnimatedObj(string name, States state, V2 pos, Rec? rec, C color,
                                 F rot, V2 org, V2 scale, SE se, F layer)
         :base(null, pos, rec, color, rot, org, scale, se, layer)
         {
@@ -65,33 +61,13 @@ namespace Sus
             this.state = state;
             page = this.Acts[state];//מקבל את המ
             Game1.CallUpdate += new SigUpdate(Update);
-            AnimatedObj.CHECKCOLL += new SigColl(CheckColl);
-            bigR = page.tex.Width * scale.X / 1.42f ;
-            inFrontOfMe = V2.UnitX * bigR / 1.2f;//vector is relative to the pos vector of the character
-            frontPos = V2.UnitX * (bigR / 2);//vector is relative to the pos vector of the character
-            backPos = V2.UnitX * (-bigR / 3);//vector is relative to the pos vector of the character
-        }
-        #endregion
-
-        bool CheckColl(AnimatedObj x)
-        {
-            if (x.Equals(this))
-                return false;
-
-            return  ((x.Pos - this.Pos).Length() < x.bigR + this.bigR) &&
-                     (((x.Pos + x.frontPos - (this.Pos + frontPos)).Length() < x.bigR / 3 + this.bigR / 3) || 
-                     ((x.Pos + x.backPos - (this.Pos + backPos)).Length() < x.bigR / 3 + this.bigR / 3)  ||
-                     ((x.Pos + x.frontPos - (this.Pos + backPos)).Length() < x.bigR / 3 + this.bigR / 3) ||
-                     ((x.Pos + x.backPos - (this.Pos + frontPos)).Length() < x.bigR / 3 + this.bigR / 3));
             
         }
+        #endregion
          
         #region Update
         public virtual void Update()
         {
-            
-            if (CHECKCOLL(this))
-                Game1.tilte = "coll ";
 
         }
         #endregion

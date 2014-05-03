@@ -83,7 +83,7 @@ namespace Sus
             }
             return colors2D;
         }
-
+        
         public static Color colorOfPosition(Color[,] colorsArray, V2 pos){
             Point ppos = Vector2ToPoint(pos);
             return colorsArray[ppos.X, ppos.Y];
@@ -129,6 +129,13 @@ namespace Sus
                 }
             }
             return new V2(-1,-1);
+        }
+
+        public static V2 getDirectionByTwoPoints(Point first, Point second)
+        {
+            V2 dir = (new V2(second.X, second.Y)) - (new V2(first.X, first.Y));
+            dir.Normalize();
+            return dir;
         }
     }
 }
