@@ -17,6 +17,10 @@ namespace Sus
         {
             roadsign.whenCarIsInArea(car);
         }
+        void func()
+        {
+        }
+
         public void Detach()
         {
             // Detach the event and delete the car
